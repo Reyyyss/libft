@@ -16,30 +16,30 @@ CFLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
+%.o: %.c
+	@$(CC) $(CFLAGS) -c $< -o $@
+
 $(NAME): $(OBJECTS)
 
-	ar rcs $@ $?
+	@ar rcs $(NAME) $(OBJECTS)
 
-	echo "Creating library" $(NAME)
+	@echo "Creating library" $(NAME)
 
-%.o : %.c
-
-	$(CC) $(CFLAGS) -c $<
 
 clean:
 
-	rm -f $(OBJECTS)
+	@rm -f $(OBJECTS)
 
-	echo "Removing" $(OBJECTS)
+	@echo "Removing OBJECTS"
 
 fclean: clean
 
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
-	echo "Removing" $(OBJECTS)
+	@echo "Removing $(NAME)"
 
 re: fclean all
 
-	echo "Removing" $(OBJECTS)
+	@echo "Re done:"
 
 .PHONY: all clean fclean re
